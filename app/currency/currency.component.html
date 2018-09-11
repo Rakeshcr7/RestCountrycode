@@ -1,0 +1,42 @@
+<!-- Progress bar -->
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="50"
+    aria-valuemax="100" style="width: 100%">
+    <b style=color:black;>Currency filter Applied ({{this.currency}})</b>
+  </div>
+</div>
+
+<!-- Go back button -->
+<a class="btn btn-info m-3" (click)="goBackToPreviousPage()">
+  <i class="fa fa-arrow-left" style="font-size:20px"></i> Back</a>
+
+<hr>
+
+<!-- country details having particular currency -->
+<div class="container-fluid row" style="text-align:center" *ngIf="allCountries">
+  <div class="card mb-3 ml-3" *ngFor="let country of allCountries" style="width: 19.5rem;">
+    <div class="m-1">
+      <img class="card-img-top" src="{{country.flag}}" alt="Card image cap">
+    </div>
+    <div class="card-body bg-light container-row" style="text-align:left">
+      <h5 class="card-title small">Country :
+        <i>{{country.name|uppercase}}</i>
+      </h5>
+      <div class="small">
+        <p>Capital :
+          <i>{{country.capital}}</i>
+          <p>Languages :
+            <span *ngFor="let lang of country.languages;
+            let first=first; let last=last">
+              <i>{{lang.name}}{{last ? '' : ', '}}</i>
+            </span>
+          </p>
+          <p>Population : {{country.population}}</p>
+          <div class="text-center">
+            <a [routerLink]="['/country',country.name]" class="btn btn-success text-center">Explore</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

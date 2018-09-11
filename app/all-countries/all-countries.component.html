@@ -1,0 +1,39 @@
+<!-- Back Button -->
+<a class="btn btn-info m-2 ml-4 " role="button" (click)="goBackToPreviousPage()">
+  <i class="fa fa-arrow-left" style="font-size:20px"></i> Back</a>
+
+<!-- All countries with name -->
+<a class="btn btn-warning m-2 ml-4 " role="button" aria-pressed="true"> All Countries under: {{this.region|uppercase}}
+  <i class="fa fa-arrow-circle-down" style="font-size:15px"></i>
+</a>
+<hr>
+
+<!-- All Countries are displayed below -->
+<div class="container-fluid row" style="text-align:center" *ngIf="allCountries">
+  <div class="card mb-3 ml-3" *ngFor="let country of allCountries" style="width: 19.5rem;">
+    <div class="m-1">
+      <img class="card-img-top" src="{{country.flag}}" alt="{{country.name|uppercase}}">
+    </div>
+    <div class="card-body bg-light container-row" style="text-align:left">
+      <h5 class="card-title small">Country :
+        <i>{{country.name|uppercase}}</i>
+      </h5>
+      <div class="small">
+        <p>Capital :
+          <i>{{country.capital}}</i>
+        </p>
+        <p>Languages :
+          <span *ngFor="let lang of country.languages;
+            let first=first; let last=last">
+            <i>{{lang.name}}{{last ? '' : ', '}}</i>
+          </span>
+        </p>
+        <p>Population : {{country.population}}</p>
+        <div class="text-center">
+          <a [routerLink]="['/country',country.name]" class="btn btn-success text-center">Explore</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END of All Countries -->
